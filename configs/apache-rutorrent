@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+	ServerAlias *
+	DocumentRoot /var/www/
+	CustomLog /var/log/apache2/rutorrent.log vhost_combined
+	ErrorLog /var/log/apache2/rutorrent_error.log
+	SCGIMount /RPC2 127.0.0.1:5000
+	<location /RPC2>
+		AuthName "Login for ruTorrent"
+		AuthType Basic
+		Require valid-user
+		AuthUserFile /var/www/rutorrent/.htpasswd
+	</location>
+</VirtualHost>
